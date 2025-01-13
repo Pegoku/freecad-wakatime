@@ -68,7 +68,7 @@ class ActivateWakatime:
         if self.is_active:
             App.Console.PrintMessage("Desactivating Wakatime...\n")
             if self.wakatime_thread and self.wakatime_thread.is_alive():
-                self.wakatime_thread.join()
+                self.wakatime_thread.join(1)
             self.is_active = False
             App.Console.PrintMessage("Wakatime desactivated\n")
         else:

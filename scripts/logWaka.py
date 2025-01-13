@@ -6,73 +6,76 @@ def log_time_to_wakatime():
     import time
     import os
     import FreeCAD as App
-    from Freecad import DocumentObserver
     import FreeCADGui as Gui
     import threading
     import inspect
+    global freecad_wakatime_version
+    freecad_wakatime_version = "0.1.0"
+    global freecad_version
+    freecad_version = ".".join(App.Version()[:3])
+    
+    global debug
+    debug = False
+    # global document_modified
+    # document_modified = False
+    global last_logged_time
+    last_logged_time = time.time()
+    global last_mod_time
+    last_mod_time = time.time()
+    global current_time
+    current_time = time.time()
+    
+    class DocumentObserver:
 
-    global document_modified
-    document_modified = False
+        def slotChangedObject(self, obj, doc):
+            global last_mod_time
+            last_mod_time = time.time()
+            if debug:
+                App.Console.PrintMessage("Object changed\n")
+                App.Console.PrintMessage(f"{last_mod_time}\n")
+            # App.Console.PrintMessage(f"self: {self} obj: {obj} doc: {doc}\n")  
+            # print("Object changed:", obj.Name)
+            
 
-    class MyDocumentObserver(DocumentObserver):
-        # _instance = None
-
-        # def __new__(cls, *args, **kwargs):
-        #     if not cls._instance:
-        #         cls._instance = super(DocumentObserver, cls).__new__(cls, *args, **kwargs)
-        #         cls._instance.__initialized = False
-        #     return cls._instance
-
-        # def __init__(self):
-        #     if self.__initialized:
-        #         return
-        #     self.__initialized = True
-        #     self.doc = App.ActiveDocument
-        #     App.Console.PrintMessage("Document observer created\n")
-
-        def slotDocumentModified(self, doc):
-            global document_modified
-            document_modified = True
-            App.Console.PrintMessage("Document modified\n")
-        
-        def slotChangedDocument(self, doc):
-            print("Document changed:", doc.Name)
-
-        def slotChangedObject(self, obj):
-            print("Object changed:", obj.Name)
-
-    observer = MyDocumentObserver()
+    observer = DocumentObserver()
     App.addDocumentObserver(observer)
     App.Console.PrintMessage("Observer added\n")
 
     while True:
-        last_logged_time = time.time()
-
+        # global last_logged_time
+        # global document_modified
+                
         try:
             projectName = App.ActiveDocument.Name
         except Exception as e:
             App.Console.PrintError(f"Error getting project name: {e}\n")
-            for _ in range(100):
-                time.sleep(0.1)
-                if document_modified:
-                    break
+            time.sleep(10)
             continue
 
         if projectName and projectName != 'NoneType':
+            # global last_mod_time
+
+            # global current_time
             current_time = time.time()
-                      
-            if document_modified:
-                App.Console.PrintMessage(f"Document has unsaved changes. Saving document: {projectName}\n")
-                try:
-                    App.ActiveDocument.save()
-                    App.Console.PrintMessage("Document saved\n")
-                    document_modified = False # reset
-                except Exception as e:
-                    App.Console.PrintError(f"Error saving document: {e}\n")
+
+            if debug:
+                App.Console.PrintMessage(f"{current_time} - {last_logged_time} = {current_time - last_logged_time}\n")
+                App.Console.PrintMessage(f"{current_time} - {last_mod_time} = {current_time - last_mod_time}\n")
+            if current_time - last_logged_time > 60 and current_time - last_mod_time < 60:
+                # App.Console.PrintMessage(f"Document has unsaved changes. Saving document: {projectName}\n")
+                # try:
+                #     App.ActiveDocument.save()
+                #     App.Console.PrintMessage("Document saved\n")
+                # except Exception as e:
+                #     App.Console.PrintError(f"Error saving document: {e}\n")
                 
-                App.Console.PrintMessage(f"Logging time to WakaTime...\n")
+                App.Console.PrintMessage(f"Logging time to WakaTime as project: {projectName}... \n")
+                
                 try:
-                    subprocess.call(['wakatime', '--plugin', 'FreeCAD', '--entity', projectName, '--project', projectName, '--plugin', 'Freecad' '--write'])
+                    last_logged_time = time.time()
+                    subprocess.call(['wakatime', '--plugin', f"freecad/{freecad_version} freecad-wakatime/{freecad_wakatime_version}", '--entity-type', 'app', '--entity', projectName, '--project', projectName, '--language', 'FreeCAD', '--write'])   
+                    if debug:
+                        App.Console.PrintMessage(['wakatime', '--plugin', f"freecad/{freecad_version} freecad-wakatime/{freecad_wakatime_version}", '--entity-type', 'app', '--entity', projectName, '--project', projectName, '--language', 'FreeCAD', '--write'])  
                     App.Console.PrintMessage("Time logged to WakaTime\n")
                     
                 except Exception as e:
