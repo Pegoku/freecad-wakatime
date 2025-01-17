@@ -15,7 +15,7 @@ def log_time_to_wakatime():
     freecad_version = ".".join(App.Version()[:3])
     
     global debug
-    debug = True
+    debug = False
     # global document_modified
     # document_modified = False
     global last_logged_time
