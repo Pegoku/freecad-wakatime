@@ -90,11 +90,7 @@ def log_time_to_wakatime():
             
 def check_wakatime():
     import subprocess
-    import os
     import FreeCAD as App
-    import FreeCADGui as Gui
-    import threading
-    import inspect
     try:
         subprocess.call(['wakatime', '--version'])
     except Exception as e:

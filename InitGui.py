@@ -3,25 +3,11 @@ import FreeCAD as App
 import FreeCADGui as Gui
 import threading
 import inspect
-# global pixmap
-
-# def log_time_to_wakatimeOld():
-#     import subprocess
-#     import time
-#     projectName = App.ActiveDocument.Name
-#     while True:
-#         App.Console.PrintMessage(f"Logging time to WakaTime. .. {projectName}\n")
-#         try:
-#             subprocess.call(['wakatime', '--write'])
-#             App.Console.PrintMessage("Time logged to WakaTime\n")
-#         except Exception as e:
-#             App.Console.PrintError(f"Error logging time to WakaTime: {e}\n")
-#         time.sleep(60)  # Log time every 60 seconds
 
 class freecadWakatime(Workbench):
     MenuText = "Freecad Wakatime"
     ToolTip = "Configuration of Freecad Wakatime"
-    Icon = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo-32.png")
+    Icon = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo.svg")
     
     App.Console.PrintMessage(
         "Log: Switching to freecadWakatime Workbench\n")
@@ -54,21 +40,21 @@ class ActivateWakatime:
         
     def GetResources(self):
         global pixmap
-        if self.is_active:
-            pixmap = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo-32-on.png")
-        else:
-            pixmap = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo-32-off.png")
+        # if self.is_active:
+        #     pixmap = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo-32-on.png")
+        # else:
+        #     pixmap = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo-32-off.png")
         
         return {
-            'Pixmap': pixmap,
+            'Pixmap': os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo.svg"),
             'MenuText': 'Wakatime',
-            'ToolTip': 'Activate/Desactivate Wakatime',
+            'ToolTip': 'Activate/Deactivate Wakatime',
         }
 
     def Activated(self):
         import threading
         from scripts.logWaka import log_time_to_wakatime, check_wakatime
-        
+        import FreeCADGui as Gui
         if not check_wakatime():
             App.Console.PrintError("Wakatime is not installed. Please install it and try again\n")
             return
@@ -79,7 +65,8 @@ class ActivateWakatime:
                 self.wakatime_thread.join(1)
             self.is_active = False
             self.set_persistent_value("is_active", self.is_active)
-            App.Console.PrintMessage("Wakatime desactivated\n")
+            App.Console.PrintMessage("Wakatime deactivated\n")
+            # Gui.updateGui()
         else:
             App.Console.PrintMessage("Activating Wakatime...\n")
             self.wakatime_thread = threading.Thread(target=log_time_to_wakatime)
@@ -98,13 +85,7 @@ class ActivateWakatime:
 
     def set_persistent_value(self, key, value):
         App.ParamGet("User parameter:Plugins/Wakatime").SetBool(key, value)
-# class DesactivateWakatime:
-#     def GetResources(self):
-#         return {
-#             'Pixmap': os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo-32.png"),
-#             'MenuText': 'Wakatime',
-#             'ToolTip': 'Desactivate Freecad Wakatime',
-#         }
+
     
 
 Gui.addWorkbench(freecadWakatime())
