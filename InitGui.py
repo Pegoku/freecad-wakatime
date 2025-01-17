@@ -9,8 +9,6 @@ class freecadWakatime(Workbench):
     ToolTip = "Configuration of Freecad Wakatime"
     Icon = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo.svg")
     
-    App.Console.PrintMessage(
-        "Log: Switching to freecadWakatime Workbench\n")
 
     def Initialize(self):
         self.appendToolbar("Wakatime", ["ActivateWakatime"])
@@ -37,7 +35,10 @@ class ActivateWakatime:
         self.is_active = self.get_persistent_value("is_active", False)
         # self.is_active = False
         self.wakatime_thread = None
-        
+        if self.is_active:
+            App.Console.PrintMessage("Log: Freecad-Wakatime active\n")
+        else:
+            App.Console.PrintMessage("Log: Freecad-Wakatime inactive\n")
     def GetResources(self):
         global pixmap
         # if self.is_active:
