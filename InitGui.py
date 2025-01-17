@@ -3,6 +3,7 @@ import FreeCAD as App
 import FreeCADGui as Gui
 import threading
 import inspect
+# global pixmap
 
 # def log_time_to_wakatimeOld():
 #     import subprocess
@@ -47,12 +48,19 @@ class freecadWakatime(Workbench):
 
 class ActivateWakatime:
     def __init__(self):
-        self.is_active = False
+        self.is_active = self.get_persistent_value("is_active", False)
+        # self.is_active = False
         self.wakatime_thread = None
         
     def GetResources(self):
+        global pixmap
+        if self.is_active:
+            pixmap = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo-32-on.png")
+        else:
+            pixmap = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo-32-off.png")
+        
         return {
-            'Pixmap': os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo-32.png"),
+            'Pixmap': pixmap,
             'MenuText': 'Wakatime',
             'ToolTip': 'Activate/Desactivate Wakatime',
         }
@@ -70,18 +78,26 @@ class ActivateWakatime:
             if self.wakatime_thread and self.wakatime_thread.is_alive():
                 self.wakatime_thread.join(1)
             self.is_active = False
+            self.set_persistent_value("is_active", self.is_active)
             App.Console.PrintMessage("Wakatime desactivated\n")
         else:
             App.Console.PrintMessage("Activating Wakatime...\n")
             self.wakatime_thread = threading.Thread(target=log_time_to_wakatime)
             self.wakatime_thread.start()
             self.is_active = True  
+            self.set_persistent_value("is_active", self.is_active)
             App.Console.PrintMessage("Wakatime Thread activated\n")
+        
+        # Gui.addCommand('ActivateWakatime', self)
             
-
     def IsActive(self):
         return True
 
+    def get_persistent_value(self, key, default):
+        return App.ParamGet("User parameter:Plugins/Wakatime").GetBool(key, default)
+
+    def set_persistent_value(self, key, value):
+        App.ParamGet("User parameter:Plugins/Wakatime").SetBool(key, value)
 # class DesactivateWakatime:
 #     def GetResources(self):
 #         return {
