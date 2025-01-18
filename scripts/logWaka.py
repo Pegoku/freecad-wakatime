@@ -15,7 +15,7 @@ def log_time_to_wakatime():
     freecad_version = ".".join(App.Version()[:3])
     
     global debug
-    debug = False
+    debug = App.ParamGet("User parameter:Plugins/Wakatime").GetBool("debug", False) 
     # global document_modified
     # document_modified = False
     global last_logged_time
@@ -88,6 +88,7 @@ def log_time_to_wakatime():
             App.Console.PrintMessage("No active document. Waiting...\n")
             time.sleep(10)  # Check after 10 seconds
             
+
 def check_wakatime():
     import subprocess
     import FreeCAD as App

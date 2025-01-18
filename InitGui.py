@@ -32,11 +32,20 @@ class freecadWakatime(Workbench):
 
 class ActivateWakatime:
     def __init__(self):
+        import threading
+        from scripts.logWaka import log_time_to_wakatime
         self.is_active = self.get_persistent_value("is_active", False)
         # self.is_active = False
         self.wakatime_thread = None
         if self.is_active:
+            self.wakatime_thread = threading.Thread(target=log_time_to_wakatime)
+            self.wakatime_thread.start()
+            self.is_active = True  
+            self.set_persistent_value("is_active", self.is_active)
+            
             App.Console.PrintMessage("Log: Freecad-Wakatime active\n")
+            
+            
         else:
             App.Console.PrintMessage("Log: Freecad-Wakatime inactive\n")
     def GetResources(self):
@@ -55,7 +64,6 @@ class ActivateWakatime:
     def Activated(self):
         import threading
         from scripts.logWaka import log_time_to_wakatime, check_wakatime
-        import FreeCADGui as Gui
         if not check_wakatime():
             App.Console.PrintError("Wakatime is not installed. Please install it and try again\n")
             return
