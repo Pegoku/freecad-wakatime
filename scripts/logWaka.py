@@ -25,6 +25,7 @@ def log_time_to_wakatime():
     global current_time
     current_time = time.time()
     
+    projectName = ""
     class DocumentObserver:
 
         def slotChangedObject(self, obj, doc):
@@ -44,13 +45,25 @@ def log_time_to_wakatime():
     while True:
         # global last_logged_time
         # global document_modified
-                
-        try:
-            projectName = App.ActiveDocument.Name
-        except Exception as e:
-            App.Console.PrintError(f"Error getting project name: {e}\n")
-            time.sleep(10)
-            continue
+        
+        projectNameTemp = ""
+
+       
+        while projectNameTemp == "" or projectNameTemp.startswith("Unnamed"):
+            try:
+                # projectName = App.ActiveDocument.Nam
+                projectNameTemp = App.ActiveDocument.Label
+            except Exception as e:
+                App.Console.PrintError(f"Error getting project name: {e}\n")
+                time.sleep(10)
+                continue
+            if projectNameTemp.startswith("Unnamed"):
+                App.Console.PrintMessage("Project is not saved. Save to start.\n")
+                time.sleep(10)
+        
+        if projectNameTemp != projectName:            
+            App.Console.PrintMessage(f"Project name: {projectNameTemp}\n")
+            projectName = projectNameTemp
 
         if projectName and projectName != 'NoneType':
             # global last_mod_time
@@ -80,7 +93,7 @@ def log_time_to_wakatime():
                     
                 except Exception as e:
                     App.Console.PrintError(f"Error logging time to WakaTime: {e}\n")
-                time.sleep(60)  # Log time every 60 seconds
+                time.sleep(10)  # Log time every 60 seconds
             else:
                 App.Console.PrintMessage("No changes in the document. Waiting...\n")
                 time.sleep(10)
