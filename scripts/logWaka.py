@@ -10,7 +10,7 @@ def log_time_to_wakatime():
     import threading
     import inspect
     global freecad_wakatime_version
-    freecad_wakatime_version = "0.1.0"
+    freecad_wakatime_version = "0.2.4"
     global freecad_version
     freecad_version = ".".join(App.Version()[:3])
     
@@ -24,6 +24,7 @@ def log_time_to_wakatime():
     last_mod_time = time.time()
     global current_time
     current_time = time.time()
+    
     
     projectName = ""
     class DocumentObserver:
@@ -95,7 +96,10 @@ def log_time_to_wakatime():
                     App.Console.PrintError(f"Error logging time to WakaTime: {e}\n")
                 time.sleep(10)  # Log time every 60 seconds
             else:
-                App.Console.PrintMessage("No changes in the document. Waiting...\n")
+                # if current_time - last_mod_time < 60:
+                #     App.Console.PrintMessage("No changes in the document. Waiting...\n")
+                # else:
+                App.Console.PrintMessage("Waiting...\n")
                 time.sleep(10)
         else:
             App.Console.PrintMessage("No active document. Waiting...\n")
