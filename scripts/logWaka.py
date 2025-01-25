@@ -10,7 +10,7 @@ def log_time_to_wakatime():
     import threading
     import inspect
     global freecad_wakatime_version
-    freecad_wakatime_version = "0.2.4"
+    freecad_wakatime_version = "0.3"
     global freecad_version
     freecad_version = ".".join(App.Version()[:3])
     

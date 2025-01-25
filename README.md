@@ -29,8 +29,16 @@ Examples for different operating systems:
 - **macOS:** `/Users/<user>/Library/Preferences/FreeCAD/Mod/`
 - **Windows:** `C:\Users\<user>\AppData\Roaming\FreeCAD\Mod\`
 
-Navigate to the `Mod` directory (create it if it doesn't exist) using the CLI  and use Git to install freecad-wakatime:
+Navigate to the `Mod` directory (create it if it doesn't exist) using the CLI and use Git to install freecad-wakatime:
 
 ```shell
 git clone https://github.com/Pegoku/freecad-wakatime.git
+```
+
+### Manual Update
+
+Navigate to the `Mod/freecad-wakatime` directory using the CLI and use Git to update the extension:
+
+```shell
+git pull
 ```
