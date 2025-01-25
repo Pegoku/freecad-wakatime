@@ -38,10 +38,11 @@ class ActivateWakatime:
         import subprocess
         os_name = os.name
         platform = os.sys.platform
+        wakatime_cli_dir = os.path.join(os.path.expanduser("~"), "wakatime-cli")
         
         if os_name == 'nt':
                 try:
-                    subprocess.check_output("wakatime-cli --version", shell=True)
+                    subprocess.check_output(wakatime_cli_dir + "wakatime-cli --version", shell=True)
                 except:
                 
                     import urllib.request
@@ -49,7 +50,7 @@ class ActivateWakatime:
                     # Download and install wakatime-cli
                     wakatime_cli_url = "https://github.com/wakatime/wakatime-cli/releases/latest/download/wakatime-cli-windows-amd64.zip"
                     wakatime_cli_zip = os.path.join(os.path.expanduser("~"), "wakatime-cli.zip")
-                    wakatime_cli_dir = os.path.join(os.path.expanduser("~"), "wakatime-cli")
+                    
 
                     # Download the wakatime-cli zip file
                     urllib.request.urlretrieve(wakatime_cli_url, wakatime_cli_zip)
