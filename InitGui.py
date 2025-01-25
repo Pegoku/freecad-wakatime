@@ -41,10 +41,7 @@ class ActivateWakatime:
         wakatime_cli_dir = os.path.join(os.path.expanduser("~"), "wakatime-cli")
         
         if os_name == 'nt':
-                try:
-                    subprocess.check_output(wakatime_cli_dir + "wakatime-cli.exe --version", shell=True)
-                except:
-                
+                if not os.path.exists(wakatime_cli_dir+"\\wakatime-cli.exe"):                
                     import urllib.request
                     import zipfile
                     # Download and install wakatime-cli
