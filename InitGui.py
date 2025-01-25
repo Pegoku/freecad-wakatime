@@ -74,20 +74,20 @@ class ActivateWakatime:
             return
         
         if self.is_active:
-            App.Console.PrintMessage("Desactivating Wakatime...\n")
+            App.Console.PrintLog("Deactivating Wakatime...\n")
             if self.wakatime_thread and self.wakatime_thread.is_alive():
                 self.wakatime_thread.join(1)
             self.is_active = False
             self.set_persistent_value("is_active", self.is_active)
-            App.Console.PrintMessage("Wakatime deactivated\n")
+            App.Console.PrintLog("Wakatime deactivated\n")
             # Gui.updateGui()
         else:
-            App.Console.PrintMessage("Activating Wakatime...\n")
+            App.Console.PrintLog("Activating Wakatime...\n")
             self.wakatime_thread = threading.Thread(target=log_time_to_wakatime)
             self.wakatime_thread.start()
             self.is_active = True  
             self.set_persistent_value("is_active", self.is_active)
-            App.Console.PrintMessage("Wakatime Thread activated\n")
+            App.Console.PrintLog("Wakatime Thread activated\n")
         
         # Gui.addCommand('ActivateWakatime', self)
             
