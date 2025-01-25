@@ -4,8 +4,8 @@ A simple freecad wakatime extension
 ## Installation
 
 ### Prerequisites
-- wakatime-cli
-- wakatime configured
+- wakatime-cli (Linux and macOS only)
+- wakatime configured 
 
 
 <!-- ### Automatic Installation (WIP)
@@ -13,6 +13,7 @@ In the future this plugin may be in the Freecad-addons repo
 The recommended way to install freecad-wakatime is via FreeCAD's [Addon Manager](https://wiki.freecad.org/Std_AddonMgr) under `Tools > Addon Manager` dropdown menu.
 
 Search for **freecad-wakatime** in the workbench category. -->
+
 ### Manual Installation
 
 The install path for FreeCAD modules depends on the operating system used.
