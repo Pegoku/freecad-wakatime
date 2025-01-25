@@ -42,7 +42,7 @@ class ActivateWakatime:
         
         if os_name == 'nt':
                 try:
-                    subprocess.check_output(wakatime_cli_dir + "wakatime-cli --version", shell=True)
+                    subprocess.check_output(wakatime_cli_dir + "wakatime-cli.exe --version", shell=True)
                 except:
                 
                     import urllib.request
