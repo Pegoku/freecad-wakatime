@@ -25,6 +25,15 @@ def log_time_to_wakatime():
     global current_time
     current_time = time.time()
     
+    wakatime_cli_dir = os.path.join(os.path.expanduser("~"), "wakatime-cli")
+    
+    global wakatime_cli
+    if os.name == 'nt':
+        wakatime_cli = os.path.join(wakatime_cli_dir, "wakatime.exe")
+    elif os.name == 'posix':
+        wakatime_cli = "wakatime"
+
+
     
     projectName = ""
     class DocumentObserver:
@@ -87,9 +96,9 @@ def log_time_to_wakatime():
                 
                 try:
                     last_logged_time = time.time()
-                    subprocess.call(['wakatime', '--plugin', f"freecad/{freecad_version} freecad-wakatime/{freecad_wakatime_version}", '--entity-type', 'app', '--entity', projectName, '--project', projectName, '--language', 'FreeCAD', '--write'])   
+                    subprocess.call([wakatime_cli, '--plugin', f"freecad/{freecad_version} freecad-wakatime/{freecad_wakatime_version}", '--entity-type', 'app', '--entity', projectName, '--project', projectName, '--language', 'FreeCAD', '--write'])   
                     if debug:
-                        App.Console.PrintMessage(['wakatime', '--plugin', f"freecad/{freecad_version} freecad-wakatime/{freecad_wakatime_version}", '--entity-type', 'app', '--entity', projectName, '--project', projectName, '--language', 'FreeCAD', '--write'])  
+                        App.Console.PrintMessage([wakatime_cli, '--plugin', f"freecad/{freecad_version} freecad-wakatime/{freecad_wakatime_version}", '--entity-type', 'app', '--entity', projectName, '--project', projectName, '--language', 'FreeCAD', '--write'])  
                     App.Console.PrintMessage("Time logged to WakaTime\n")
                     
                 except Exception as e:

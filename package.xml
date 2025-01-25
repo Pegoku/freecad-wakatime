@@ -8,11 +8,15 @@
   <url branch="main" type="repository">https://github.com/Pegoku/freecad-wakatime.git</url>
   <url type="bugtracker">https://github.com/Pegoku/freecad-wakatime/issues</url>
   <url type="readme">https://github.com/Pegoku/freecad-wakatime/blob/main/README.md</url>
+
+  <author email="pegoku08@gmail.com">Pegoku</author>
+  <maintainer email="pegoku08@gmail.com">Pegoku</maintainer>
   <tag>wakatime</tag>
   <content>
     <workbench>
       <classname>freecad-wakatime</classname>
       <icon>resources/logo.svg</icon>
+      <depend>wakatime-cli</depend>
     </workbench>
   </content>
 </package>
