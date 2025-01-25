@@ -123,38 +123,38 @@ def check_wakatime():
     os_name = os.name
     platform = os.sys.platform
     if os_name == 'nt':
-            wakatime_cli_dir = os.path.join(os.path.expanduser("~"), "wakatime-cli")
-    
-            if not os.path.exists(wakatime_cli_dir+"\\wakatime-cli.exe"):             
-                try:   
-                    import urllib.request
-                    import zipfile
-                    # Download and install wakatime-cli
-                    wakatime_cli_url = "https://github.com/wakatime/wakatime-cli/releases/latest/download/wakatime-cli-windows-amd64.zip"
-                    wakatime_cli_zip = os.path.join(os.path.expanduser("~"), "wakatime-cli.zip")
-                    
+        wakatime_cli_dir = os.path.join(os.path.expanduser("~"), "wakatime-cli")
 
-                    # Download the wakatime-cli zip file
-                    urllib.request.urlretrieve(wakatime_cli_url, wakatime_cli_zip)
+        if not os.path.exists(wakatime_cli_dir+"\\wakatime-cli.exe"):             
+            try:   
+                import urllib.request
+                import zipfile
+                # Download and install wakatime-cli
+                wakatime_cli_url = "https://github.com/wakatime/wakatime-cli/releases/latest/download/wakatime-cli-windows-amd64.zip"
+                wakatime_cli_zip = os.path.join(os.path.expanduser("~"), "wakatime-cli.zip")
+                
 
-                    # Extract the zip file
-                    with zipfile.ZipFile(wakatime_cli_zip, 'r') as zip_ref:
-                        zip_ref.extractall(wakatime_cli_dir)
-                    
-                    # Rename the extracted file to wakatime-cli.exe
-                    for file_name in os.listdir(wakatime_cli_dir):
-                        if file_name.startswith("wakatime-cli") and file_name.endswith(".exe"):
-                            os.rename(os.path.join(wakatime_cli_dir, file_name), os.path.join(wakatime_cli_dir, "wakatime-cli.exe"))
-                            break
+                # Download the wakatime-cli zip file
+                urllib.request.urlretrieve(wakatime_cli_url, wakatime_cli_zip)
 
-                    # Clean up the zip file
-                    os.remove(wakatime_cli_zip)
-                    return True
-                except Exception as e:
-                    App.Console.PrintError(f"Error installing wakatime: {e}\n")
-                    return False
-            else:
+                # Extract the zip file
+                with zipfile.ZipFile(wakatime_cli_zip, 'r') as zip_ref:
+                    zip_ref.extractall(wakatime_cli_dir)
+                
+                # Rename the extracted file to wakatime-cli.exe
+                for file_name in os.listdir(wakatime_cli_dir):
+                    if file_name.startswith("wakatime-cli") and file_name.endswith(".exe"):
+                        os.rename(os.path.join(wakatime_cli_dir, file_name), os.path.join(wakatime_cli_dir, "wakatime-cli.exe"))
+                        break
+
+                # Clean up the zip file
+                os.remove(wakatime_cli_zip)
                 return True
+            except Exception as e:
+                App.Console.PrintError(f"Error installing wakatime: {e}\n")
+                return False
+        else:
+            return True
     else:
         try:
             subprocess.call(['wakatime', '--version'])
