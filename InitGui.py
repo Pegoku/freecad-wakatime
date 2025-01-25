@@ -33,38 +33,7 @@ class freecadWakatime(Workbench):
 class ActivateWakatime:
     def __init__(self):
         import threading
-        from scripts.logWaka import log_time_to_wakatime
-        import os
-        import subprocess
-        os_name = os.name
-        platform = os.sys.platform
-        wakatime_cli_dir = os.path.join(os.path.expanduser("~"), "wakatime-cli")
-        
-        if os_name == 'nt':
-                if not os.path.exists(wakatime_cli_dir+"\\wakatime-cli.exe"):                
-                    import urllib.request
-                    import zipfile
-                    # Download and install wakatime-cli
-                    wakatime_cli_url = "https://github.com/wakatime/wakatime-cli/releases/latest/download/wakatime-cli-windows-amd64.zip"
-                    wakatime_cli_zip = os.path.join(os.path.expanduser("~"), "wakatime-cli.zip")
-                    
-
-                    # Download the wakatime-cli zip file
-                    urllib.request.urlretrieve(wakatime_cli_url, wakatime_cli_zip)
-
-                    # Extract the zip file
-                    with zipfile.ZipFile(wakatime_cli_zip, 'r') as zip_ref:
-                        zip_ref.extractall(wakatime_cli_dir)
-                    
-                    # Rename the extracted file to wakatime-cli.exe
-                    for file_name in os.listdir(wakatime_cli_dir):
-                        if file_name.startswith("wakatime-cli") and file_name.endswith(".exe"):
-                            os.rename(os.path.join(wakatime_cli_dir, file_name), os.path.join(wakatime_cli_dir, "wakatime-cli.exe"))
-                            break
-
-                    # Clean up the zip file
-                    os.remove(wakatime_cli_zip)
-
+        from scripts.logWaka import log_time_to_wakatime      
 
                 # # Add wakatime-cli to PATH (windows)
                 # print(os.pathsep + wakatime_cli_dir)
