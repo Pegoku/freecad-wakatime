@@ -4,7 +4,7 @@
   <description>A simple freecad wakatime extension.</description>
   <version>0.2.0</version>
   <date>2025-1-17</date>
-  <license file="LICENSE">GPL-2.0-or-later</license>
+  <license file="LICENSE">LGPL-2.1-or-later</license>
   <url branch="main" type="repository">https://github.com/Pegoku/freecad-wakatime.git</url>
   <url type="bugtracker">https://github.com/Pegoku/freecad-wakatime/issues</url>
   <url type="readme">https://github.com/Pegoku/freecad-wakatime/blob/main/README.md</url>
