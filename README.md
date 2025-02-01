@@ -1,11 +1,17 @@
 # freecad-wakatime
 A simple freecad wakatime extension
 
+## What is WakaTime?
+WakaTime is an open-source time tracking tool. It provides insights into how much time you spend on different projects, languages, and files.
+
+## What is freecad-wakatime?
+The `freecad-wakatime` extension integrates WakaTime with FreeCAD, allowing you to track the time you spend working on your FreeCAD projects. This extension logs your activity and sends it to your WakaTime account, where you can view detailed reports and analytics.
+
 ## Installation
 
 ### Prerequisites
-- wakatime-cli (Linux and macOS only)
-- wakatime configured 
+- `wakatime` in PATH (Linux and macOS only)
+- WakaTime configured with your API key 
 
 
 <!-- ### Automatic Installation (WIP)
@@ -43,3 +49,10 @@ Navigate to the `Mod/freecad-wakatime` directory using the CLI and use Git to up
 ```shell
 git pull
 ```
+
+## Usage
+Once installed, the freecad-wakatime workbench will be available, and you'll be able to enable or disable the tracking of time you spend working on your FreeCAD projects. You can view your coding activity on the WakaTime dashboard.
+
+## License
+This project is licensed under the LGPL-2.1 license. See the [LICENSE](https://github.com/Pegoku/freecad-wakatime/blob/main/LICENSE) file for more details.
+
