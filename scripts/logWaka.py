@@ -61,7 +61,7 @@ def log_time_to_wakatime():
        
         while projectNameTemp == "" or projectNameTemp.startswith("Unnamed"):
             try:
-                # projectName = App.ActiveDocument.Nam
+                # projectName = App.ActiveDocument.Name
                 projectNameTemp = App.ActiveDocument.Label
             except Exception as e:
                 App.Console.PrintError(f"Error getting project name: {e}\n")

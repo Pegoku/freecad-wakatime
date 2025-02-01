@@ -1,4 +1,4 @@
-# freecad-wakatime
+# Freecad-wakatime
 A simple freecad wakatime extension
 
 ## What is WakaTime?
