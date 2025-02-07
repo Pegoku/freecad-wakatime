@@ -10,8 +10,7 @@ The `freecad-wakatime` extension integrates WakaTime with FreeCAD, allowing you 
 ## Installation
 
 ### Prerequisites
-- `wakatime` in PATH (Linux and macOS only)
-- WakaTime configured with your API key 
+- WakaTime (wakatime.cfg) configured with your API key 
 
 
 <!-- ### Automatic Installation (WIP)

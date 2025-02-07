@@ -31,7 +31,7 @@ def log_time_to_wakatime():
     if os.name == 'nt':
         wakatime_cli = os.path.join(wakatime_cli_dir, "wakatime.exe")
     elif os.name == 'posix':
-        wakatime_cli = "wakatime"
+        wakatime_cli = os.path.join(wakatime_cli_dir, "wakatime")
 
 
     
@@ -98,7 +98,7 @@ def log_time_to_wakatime():
                     last_logged_time = time.time()
                     subprocess.call([wakatime_cli, '--plugin', f"freecad/{freecad_version} freecad-wakatime/{freecad_wakatime_version}", '--entity-type', 'app', '--entity', projectName, '--project', projectName, '--language', 'FreeCAD', '--write'])   
                     if debug:
-                        App.Console.PrintMessage([wakatime_cli, '--plugin', f"freecad/{freecad_version} freecad-wakatime/{freecad_wakatime_version}", '--entity-type', 'app', '--entity', projectName, '--project', projectName, '--language', 'FreeCAD', '--write'])  
+                        App.Console.PrintMessage(f"{wakatime_cli} --plugin freecad/{freecad_version} freecad-wakatime/{freecad_wakatime_version} --entity-type app --entity {projectName} --project {projectName} --language FreeCAD --write")  
                     App.Console.PrintMessage("Time logged to WakaTime\n")
                     
                 except Exception as e:
@@ -155,9 +155,38 @@ def check_wakatime():
                 return False
         else:
             return True
-    else:
+    elif os_name == 'posix':
+        wakatime_cli_dir = os.path.join(os.path.expanduser("~"), "wakatime-cli")
+        if not os.path.exists(wakatime_cli_dir+"/wakatime"):             
+            try:   
+                import urllib.request
+                import zipfile
+                # Download and install wakatime-cli
+                wakatime_cli_url = "https://github.com/wakatime/wakatime-cli/releases/latest/download/wakatime-cli-linux-amd64.zip"
+                wakatime_cli_zip = os.path.join(os.path.expanduser("~"), "wakatime-cli.zip")
+                
+
+                # Download the wakatime-cli zip file
+                urllib.request.urlretrieve(wakatime_cli_url, wakatime_cli_zip)
+
+                # Extract the zip file
+                with zipfile.ZipFile(wakatime_cli_zip, 'r') as zip_ref:
+                    zip_ref.extractall(wakatime_cli_dir)
+                
+                # Rename the extracted file to wakatime
+                for file_name in os.listdir(wakatime_cli_dir):
+                    if file_name.startswith("wakatime-cli") and not file_name.endswith(".zip"):
+                        os.rename(os.path.join(wakatime_cli_dir, file_name), os.path.join(wakatime_cli_dir, "wakatime"))
+                        break
+
+                # Clean up the zip file
+                os.remove(wakatime_cli_zip)
+                return True
+            except Exception as e:
+                App.Console.PrintError(f"Error installing wakatime: {e}\n")
+                return False
         try:
-            subprocess.call(['wakatime', '--version'])
+            subprocess.call([wakatime_cli, '--version'])
         except Exception as e:
             App.Console.PrintError(f"Error checking wakatime: {e}\n")
             return False
