@@ -51,6 +51,7 @@ git pull
 
 ## Usage
 Once installed, the freecad-wakatime workbench will be available, and you'll be able to enable or disable the tracking of time you spend working on your FreeCAD projects. You can view your coding activity on the WakaTime dashboard.
+
 ![image](image.png)
 
 ## License
