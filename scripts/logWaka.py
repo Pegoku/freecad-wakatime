@@ -179,6 +179,8 @@ def check_wakatime():
                         os.rename(os.path.join(wakatime_cli_dir, file_name), os.path.join(wakatime_cli_dir, "wakatime"))
                         break
 
+                # Set as executable
+                os.chmod(os.path.join(wakatime_cli_dir, "wakatime"), 0o755)
                 # Clean up the zip file
                 os.remove(wakatime_cli_zip)
                 return True
