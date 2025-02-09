@@ -1,11 +1,11 @@
 # Freecad-wakatime
-A simple freecad wakatime extension
+A simple FreeCad wakatime extension
 
 ## What is WakaTime?
-WakaTime is an open-source time tracking tool. It provides insights into how much time you spend on different projects, languages, and files.
+[WakaTime](https://wakatime.com/) is an open-source time tracking tool. It provides insights into how much time you spend on different projects, languages, and files.
 
-## What is freecad-wakatime?
-The `freecad-wakatime` extension integrates WakaTime with FreeCAD, allowing you to track the time you spend working on your FreeCAD projects. This extension logs your activity and sends it to your WakaTime account, where you can view detailed reports and analytics.
+## What is FreeCad-wakatime?
+The `FreeCad-wakatime` extension integrates WakaTime with FreeCAD, allowing you to track the time you spend working on your FreeCAD projects. This extension logs your activity and sends it to your WakaTime account, where you can view detailed reports and analytics.
 
 ## Installation
 
@@ -15,9 +15,9 @@ The `freecad-wakatime` extension integrates WakaTime with FreeCAD, allowing you 
 
 <!-- ### Automatic Installation (WIP)
 In the future this plugin may be in the Freecad-addons repo
-The recommended way to install freecad-wakatime is via FreeCAD's [Addon Manager](https://wiki.freecad.org/Std_AddonMgr) under `Tools > Addon Manager` dropdown menu.
+The recommended way to install FreeCad-wakatime is via FreeCAD's [Addon Manager](https://wiki.freecad.org/Std_AddonMgr) under `Tools > Addon Manager` dropdown menu.
 
-Search for **freecad-wakatime** in the workbench category. -->
+Search for **FreeCad-wakatime** in the workbench category. -->
 
 ### Manual Installation
 
@@ -35,7 +35,7 @@ Examples for different operating systems:
 - **macOS:** `/Users/<user>/Library/Preferences/FreeCAD/Mod/`
 - **Windows:** `C:\Users\<user>\AppData\Roaming\FreeCAD\Mod\`
 
-Navigate to the `Mod` directory (create it if it doesn't exist) using the CLI and use Git to install freecad-wakatime:
+Navigate to the `Mod` directory (create it if it doesn't exist) using the CLI and use Git to install FreeCad-wakatime:
 
 ```shell
 git clone https://github.com/Pegoku/freecad-wakatime.git
@@ -50,9 +50,18 @@ git pull
 ```
 
 ## Usage
-Once installed, the freecad-wakatime workbench will be available, and you'll be able to enable or disable the tracking of time you spend working on your FreeCAD projects. You can view your coding activity on the WakaTime dashboard.
+Once installed, the FreeCad-wakatime workbench will be available, and you'll be able to enable or disable the tracking of time you spend working on your FreeCAD projects. You can view your coding activity on the WakaTime dashboard.
 
-![image](image.png)
+Freecad:
+![FreeCAD](image.png)
+
+Wakatime:
+![Wakatime](image-1.png)
+
+## Report Bugs
+
+If you encounter any bugs or issues while using the FreeCad-wakatime extension, please report them by opening an issue on the [GitHub Issues](https://github.com/Pegoku/freecad-wakatime/issues) page.
+Your feedback is valuable and helps improve the extension.
 
 ## License
 This project is licensed under the LGPL-2.1 license. See the [LICENSE](https://github.com/Pegoku/freecad-wakatime/blob/main/LICENSE) file for more details.
