@@ -1,4 +1,4 @@
-# Freecad-WakaTime
+# FreeCAD-WakaTime
 A simple FreeCAD WakaTime extension
 
 ## What is WakaTime?
@@ -42,7 +42,7 @@ Examples for different operating systems:
 - **macOS:** `/Users/<user>/Library/Preferences/FreeCAD/Mod/`
 - **Windows:** `C:\Users\<user>\AppData\Roaming\FreeCAD\Mod\`
 
-Navigate to the `Mod` directory (create it if it doesn't exist) using the CLI and use Git to install FreeCad-wakatime:
+Navigate to the `Mod` directory (create it if it doesn't exist) using the CLI and use Git to install FreeCAD-WakaTime:
 
 ```shell
 git clone https://github.com/Pegoku/freecad-wakatime.git
@@ -59,7 +59,7 @@ git pull
 </details>
 
 ## Usage
-Once installed, the FreeCad-wakatime workbench will be available, and you'll be able to enable or disable the tracking of time you spend working on your FreeCAD projects. You can view your coding activity on the WakaTime dashboard.
+Once installed, the FreeCAD-WakaTime workbench will be available, and you'll be able to enable or disable the tracking of time you spend working on your FreeCAD projects. You can view your coding activity on the WakaTime dashboard.
 
 Freecad:
 
@@ -71,7 +71,7 @@ Wakatime:
 
 ## Report Bugs
 
-If you encounter any bugs or issues while using the FreeCad-wakatime extension, please report them by opening an issue on the [GitHub Issues](https://github.com/Pegoku/freecad-wakatime/issues) page.
+If you encounter any bugs or issues while using the FreeCAD-WakaTime extension, please report them by opening an issue on the [GitHub Issues](https://github.com/Pegoku/freecad-wakatime/issues) page.
 Your feedback is valuable and helps improve the extension.
 
 ## License

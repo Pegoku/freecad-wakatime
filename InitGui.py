@@ -5,8 +5,8 @@ import threading
 import inspect
 
 class freecadWakatime(Workbench):
-    MenuText = "Freecad Wakatime"
-    ToolTip = "Configuration of Freecad Wakatime"
+    MenuText = "FreeCAD WakaTime"
+    ToolTip = "Configuration of FreeCAD WakaTime"
     Icon = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo.svg")
     
 
@@ -48,11 +48,11 @@ class ActivateWakatime:
             self.is_active = True  
             self.set_persistent_value("is_active", self.is_active)
             
-            App.Console.PrintMessage("Log: Freecad-Wakatime active\n")
+            App.Console.PrintMessage("Log: FreeCAD-WakaTime active\n")
             
             
         else:
-            App.Console.PrintMessage("Log: Freecad-Wakatime inactive\n")
+            App.Console.PrintMessage("Log: FreeCAD-WakaTime inactive\n")
     def GetResources(self):
         global pixmap
         # if self.is_active:

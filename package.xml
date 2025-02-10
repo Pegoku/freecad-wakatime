@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <package format="1" xmlns="https://wiki.freecad.org/Package_Metadata">
-  <name>Freecad-wakatime</name>
-  <description>A simple freecad wakatime extension.</description>
+  <name>FreeCAD-WakaTime</name>
+  <description>A simple FreeCAD WakaTime extension.</description>
   <version>0.2.0</version>
   <date>2025-1-17</date>
   <license file="LICENSE">LGPL-2.1-or-later</license>
@@ -14,7 +14,7 @@
   <tag>wakatime</tag>
   <content>
     <workbench>
-      <classname>freecad-wakatime</classname>
+      <classname>FreeCAD-WakaTime</classname>
       <icon>resources/logo.svg</icon>
       <depend>wakatime-cli</depend>
     </workbench>
