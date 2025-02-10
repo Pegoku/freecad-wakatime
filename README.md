@@ -18,7 +18,7 @@ The `FreeCAD-WakaTime` addon integrates WakaTime with FreeCAD. This allows one t
 This workbench is conveniently available and therefore recommended to install via the FreeCAD [Addon Manager](https://wiki.freecad.org/Std_AddonMgr).  
 
 * Within FreeCAD, go to `Tools > Addon Manager`
-* Search for **FreeCad-wakatime** in the workbench category
+* Search for **FreeCAD-Wakatime** in the workbench category
 * Install the FreeCAD-Wakatime workbench
 * When prompted to restart FreeCAD, click 'Ok'
 
