@@ -55,11 +55,7 @@ class ActivateWakatime:
             App.Console.PrintMessage("Log: FreeCAD-WakaTime inactive\n")
     def GetResources(self):
         global pixmap
-        # if self.is_active:
-        #     pixmap = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo-32-on.png")
-        # else:
-        #     pixmap = os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo-32-off.png")
-        
+
         return {
             'Pixmap': os.path.join(os.path.dirname(inspect.getfile(inspect.currentframe())), "resources", "Logo.svg"),
             'MenuText': 'Wakatime',
