@@ -45,7 +45,7 @@ Examples for different operating systems:
 Navigate to the `Mod` directory (create it if it doesn't exist) using the CLI and use Git to install FreeCAD-WakaTime:
 
 ```shell
-git clone https://github.com/Pegoku/freecad-wakatime.git
+git clone https://github.com/Pegoku/FreeCAD-WakaTime.git
 ```
 
 #### Manual Update
@@ -71,9 +71,9 @@ Wakatime:
 
 ## Report Bugs
 
-If you encounter any bugs or issues while using the FreeCAD-WakaTime extension, please report them by opening an issue on the [GitHub Issues](https://github.com/Pegoku/freecad-wakatime/issues) page.
+If you encounter any bugs or issues while using the FreeCAD-WakaTime extension, please report them by opening an issue on the [GitHub Issues](https://github.com/Pegoku/FreeCAD-WakaTime/issues) page.
 Your feedback is valuable and helps improve the extension.
 
 ## License
-This project is licensed under the LGPL-2.1 license. See the [LICENSE](https://github.com/Pegoku/freecad-wakatime/blob/main/LICENSE) file for more details.
+This project is licensed under the LGPL-2.1 license. See the [LICENSE](https://github.com/Pegoku/FreeCAD-WakaTime/blob/main/LICENSE) file for more details.
 
